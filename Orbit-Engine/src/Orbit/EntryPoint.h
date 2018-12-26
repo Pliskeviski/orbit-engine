@@ -7,7 +7,9 @@
 extern Orbit::Application* Orbit::CreateApplication();
 
 int main(int argc, char** argv) {
-	printf("Orbit Engine!\n");
+	Orbit::Log::Init();
+	Orbit::Log::GetCoreLogger()->info("Orbit Engine!");
+	ORBIT_CORE_ERROR("Orbit Engine!");
 	auto app = Orbit::CreateApplication();
 	app->Run();
 	delete app;
