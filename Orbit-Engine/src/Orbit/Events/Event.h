@@ -2,9 +2,6 @@
 
 #include "Orbit/Core.h"
 
-#include <string>
-#include <sstream>
-
 namespace Orbit {
 
 	enum class EventType {

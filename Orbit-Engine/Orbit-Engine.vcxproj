@@ -58,6 +58,8 @@
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>OBT_PLATFORM_WINDOWS;OBT_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)Orbit-Engine\src;$(SolutionDir)Orbit-Engine\Libs\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeaderFile>obtpch.h</PrecompiledHeaderFile>
     </ClCompile>
     <PostBuildEvent>
       <Command>xcopy /y /d "$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\*.dll" "$(SolutionDir)bin\$(Configuration)-$(Platform)\Sandbox\"</Command>
@@ -73,6 +75,8 @@
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>OBT_PLATFORM_WINDOWS;OBT_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)Orbit-Engine\src;$(SolutionDir)Orbit-Engine\Libs\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeaderFile>obtpch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -83,6 +87,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\obtpch.h" />
     <ClInclude Include="src\Orbit\Events\KeyEvents\KeyEvents.h" />
     <ClInclude Include="src\Orbit\Events\Event.h" />
     <ClInclude Include="src\Orbit\Events\EventDispatcher.h" />
@@ -95,6 +100,7 @@
     <ClInclude Include="src\Orbit\Events\ApplicationEvents\WindowEvent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\obtpch.cpp" />
     <ClCompile Include="src\Orbit\Events\KeyEvents\KeyEvents.cpp" />
     <ClCompile Include="src\Orbit\Events\MouseEvents\MouseEvent.cpp" />
     <ClCompile Include="src\Orbit\Log.cpp" />

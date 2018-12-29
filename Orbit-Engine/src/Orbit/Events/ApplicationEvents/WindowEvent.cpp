@@ -1,3 +1,4 @@
+#include "obtpch.h"
 #include "WindowEvent.h"
 
 
@@ -41,6 +42,6 @@ namespace Orbit {
 
 	int WindowCloseEvent::GetCategoryFlags() const {
 		return EventCategoryApplication;
-	}
+	} 
 
 }

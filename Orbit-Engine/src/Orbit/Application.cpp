@@ -1,5 +1,5 @@
+#include "obtpch.h"
 #include "Application.h"
-#include <iostream>
 #include "Events/KeyEvents/KeyEvents.h"
 
 namespace Orbit {

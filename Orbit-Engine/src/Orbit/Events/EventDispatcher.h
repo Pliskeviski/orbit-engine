@@ -2,8 +2,6 @@
 
 #include "Orbit.h"
 
-#include <functional>
-
 #include "ApplicationEvents/WindowEvent.h"
 #include "KeyEvents/KeyEvents.h"
 #include "MouseEvents/MouseEvent.h"
