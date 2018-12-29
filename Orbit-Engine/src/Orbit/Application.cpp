@@ -1,5 +1,6 @@
 #include "Application.h"
-
+#include <iostream>
+#include "Events/KeyEvents/KeyEvents.h"
 
 namespace Orbit {
 
@@ -10,6 +11,11 @@ namespace Orbit {
 	}
 
 	void Application::Run() {
+		KeyPressedEvent e(20, 1);
+		std::cout << e.ToString();
 		while (true);
 	}
+
+
+//#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 }

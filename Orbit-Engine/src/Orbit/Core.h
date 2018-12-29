@@ -7,3 +7,6 @@
 		#define ORBIT_API __declspec(dllimport)
 	#endif 
 #endif
+
+// BIT Shifter
+#define BIT(x) (1 << x)
