@@ -1,3 +1,6 @@
 [submodule "Orbit-Engine/vendor/spdlog"]
 	path = Orbit-Engine/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Orbit-Engine/Libs/spdlog"]
+	path = Orbit-Engine/Libs/spdlog
+	url = https://github.com/gabime/spdlog
