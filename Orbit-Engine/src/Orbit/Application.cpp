@@ -5,15 +5,17 @@
 namespace Orbit {
 
 	Application::Application() {
+		this->m_Window = std::unique_ptr<Window>(Window::Create());
+		this->m_Running = true;
 	}
 
 	Application::~Application() {
 	}
 
 	void Application::Run() {
-		KeyPressedEvent e(20, 1);
-		std::cout << e.ToString();
-		while (true);
+		while (this->m_Running) {
+			this->m_Window->OnUpdate();
+		}
 	}
 
 
