@@ -18,9 +18,6 @@ namespace Orbit {
 		ss << "MouseMovedEvent: " << m_MouseX << ", " << m_MouseY;
 		return ss.str();
 	}
-	EventType MouseMovedEvent::GetStaticType() {
-		return EventType::MouseMoved;
-	}
 
 	int MouseMovedEvent::GetCategoryFlags() const {
 		return EventCategoryMouse | EventCategoryInput;
@@ -44,10 +41,6 @@ namespace Orbit {
 		return ss.str();
 	}
 
-	EventType MouseScrolledEvent::GetStaticType() {
-		return EventType::MouseScrolled;
-	}
-
 	int MouseScrolledEvent::GetCategoryFlags() const {
 		return EventCategoryMouse | EventCategoryInput;
 	}
@@ -68,10 +61,6 @@ namespace Orbit {
 		ss << "MouseButtonPressedEvent: " << m_Button;
 		return ss.str();
 	}
-	EventType MouseButtonPressedEvent::GetStaticType()
-	{
-		return EventType::MouseButtonPressed;
-	}
 
 	// Mouse Released
 	MouseButtonReleasedEvent::MouseButtonReleasedEvent(int button) : MouseButtonEvent(button) {}
@@ -80,9 +69,5 @@ namespace Orbit {
 		std::stringstream ss;
 		ss << "MouseButtonReleasedEvent: " << m_Button;
 		return ss.str();
-	}
-
-	EventType MouseButtonReleasedEvent::GetStaticType() {
-		return EventType::MouseButtonReleased;
 	}
 }

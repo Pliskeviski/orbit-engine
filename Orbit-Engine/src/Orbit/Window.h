@@ -19,6 +19,7 @@ namespace Orbit {
 
 	class ORBIT_API Window {
 	public:
+		using EventCallbackFn = std::function<void(Event&)>;
 
 		virtual ~Window() {};
 
@@ -27,7 +28,7 @@ namespace Orbit {
 		virtual unsigned int getWidth() const = 0;
 		virtual unsigned int getHeight() const = 0;
 
-		virtual void setEvent(const Event& callback) = 0;
+		virtual void setEventCallback(const EventCallbackFn& callback) = 0;
 		virtual void setVSync(bool enabled) = 0;
 		virtual bool isVSync() const = 0;
 

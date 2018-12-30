@@ -31,10 +31,6 @@ namespace Orbit {
 		return ss.str();
 	}
 
-	EventType KeyPressedEvent::GetStaticType() {
-		return EventType::KeyPressed;
-	}
-
 	/*
 		Key released
 	*/
@@ -45,9 +41,5 @@ namespace Orbit {
 		std::stringstream ss;
 		ss << "KeyReleasedEvent: " << m_KeyCode;
 		return ss.str();
-	}
-
-	EventType KeyReleasedEvent::GetStaticType() {
-		return EventType::KeyRelease;
 	}
 }

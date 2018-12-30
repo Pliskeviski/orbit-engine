@@ -38,8 +38,8 @@ namespace Orbit {
 		return this->m_Data.height;
 	}
 
-	void winWindow::setEvent(const Event& event) {
-		this->m_Data.eventCallback = event;
+	void winWindow::setEventCallback(const EventCallbackFn& callback) {
+		this->m_Data.eventCallback = callback;
 	}
 
 	bool winWindow::isVSync() const {
@@ -72,13 +72,13 @@ namespace Orbit {
 			data.height = height;
 
 			WindowResizeEvent event(width, height);
-			data.eventCallback = event;
+			data.eventCallback(event);
 		});
 
 		glfwSetWindowCloseCallback(this->m_Window, [](GLFWwindow* window) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			WindowCloseEvent event;
-			data.eventCallback = event;
+			data.eventCallback(event);
 		});
 
 		glfwSetKeyCallback(this->m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -87,17 +87,17 @@ namespace Orbit {
 			switch (action) {
 				case GLFW_PRESS: {
 					KeyPressedEvent event(key, 0);
-					data.eventCallback = event;
+					data.eventCallback(event);
 					break;
 				}
 				case GLFW_RELEASE: {
 					KeyReleasedEvent event(key);
-					data.eventCallback = event;
+					data.eventCallback(event);
 					break;
 				}
 				case GLFW_REPEAT: {
 					KeyPressedEvent event(key, 1);
-					data.eventCallback = event;
+					data.eventCallback(event);
 					break;
 				}
 			}
@@ -109,12 +109,12 @@ namespace Orbit {
 			switch (action) {
 				case GLFW_PRESS: {
 					MouseButtonPressedEvent event(button);
-					data.eventCallback = event;
+					data.eventCallback(event);
 					break;
 				}
 				case GLFW_RELEASE: {
 					MouseButtonReleasedEvent event(button);
-					data.eventCallback = event;
+					data.eventCallback(event);
 					break;
 				}
 			}
@@ -124,14 +124,14 @@ namespace Orbit {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
 			MouseScrolledEvent event((float)xOffset, (float)yOffset);
-			data.eventCallback = event;
+			data.eventCallback(event);
 		});
 
 		glfwSetCursorPosCallback(this->m_Window, [](GLFWwindow* window, double xPos, double yPos) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
 			MouseMovedEvent event((float)xPos, (float)yPos);
-			data.eventCallback = event;
+			data.eventCallback(event);
 		});
 	}
 

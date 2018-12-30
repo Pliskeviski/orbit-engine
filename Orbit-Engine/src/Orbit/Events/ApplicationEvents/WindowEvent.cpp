@@ -23,9 +23,6 @@ namespace Orbit {
 		ss << "WindowResizeEvent: " << m_width << ", " << m_height;
 		return ss.str();
 	}
-	EventType WindowResizeEvent::GetStaticType() {
-		return EventType::WindowResize;
-	}
 	int WindowResizeEvent::GetCategoryFlags() const {
 		return EventCategoryApplication;
 	}
@@ -34,10 +31,6 @@ namespace Orbit {
 	 	Window Close Events
 	*/
 	WindowCloseEvent::WindowCloseEvent() {
-	}
-
-	EventType WindowCloseEvent::GetStaticType() {
-		return EventType::WindowClose;
 	}
 
 	int WindowCloseEvent::GetCategoryFlags() const {

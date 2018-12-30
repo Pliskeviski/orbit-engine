@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Orbit/Window.h"
+
 #include "GLFW/glfw3.h"
 
 namespace Orbit {
@@ -14,7 +15,7 @@ namespace Orbit {
 		unsigned int getWidth() const override;
 		unsigned int getHeight() const override;
 
-		void setEvent(const Event& event) override;
+		void setEventCallback(const EventCallbackFn& callback) override;
 
 		void setVSync(bool enabled) override;
 		bool isVSync() const override;
@@ -33,7 +34,7 @@ namespace Orbit {
 			unsigned int height;
 			bool vsync;
 
-			Event eventCallback;
+			EventCallbackFn eventCallback;
 		};
 
 		WindowData m_Data;

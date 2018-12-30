@@ -98,6 +98,8 @@
     <ClInclude Include="src\Orbit\Events\Event.h" />
     <ClInclude Include="src\Orbit\Events\EventDispatcher.h" />
     <ClInclude Include="src\Orbit\Events\MouseEvents\MouseEvent.h" />
+    <ClInclude Include="src\Orbit\Layer\Layer.h" />
+    <ClInclude Include="src\Orbit\Layer\LayerStack.h" />
     <ClInclude Include="src\Orbit\Log.h" />
     <ClInclude Include="src\Orbit.h" />
     <ClInclude Include="src\Orbit\Application.h" />
@@ -111,6 +113,7 @@
     <ClCompile Include="src\obtpch.cpp" />
     <ClCompile Include="src\Orbit\Events\KeyEvents\KeyEvents.cpp" />
     <ClCompile Include="src\Orbit\Events\MouseEvents\MouseEvent.cpp" />
+    <ClCompile Include="src\Orbit\Layer\LayerStack.cpp" />
     <ClCompile Include="src\Orbit\Log.cpp" />
     <ClCompile Include="src\Orbit\Application.cpp" />
     <ClCompile Include="src\Orbit\Events\ApplicationEvents\WindowEvent.cpp" />

@@ -13,8 +13,9 @@ namespace Orbit {
 
 		std::string ToString() const;
 
-		static EventType GetStaticType();
 		virtual int GetCategoryFlags() const;
+
+		EVENT_CLASS_TYPE(MouseMoved)
 	private:
 		float m_MouseX, m_MouseY;
 	};
@@ -28,7 +29,7 @@ namespace Orbit {
 
 		std::string ToString() const;
 
-		static EventType GetStaticType();
+		EVENT_CLASS_TYPE(MouseScrolled)
 		virtual int GetCategoryFlags() const;
 	private:
 		float m_XOffset, m_YOffset;
@@ -51,8 +52,7 @@ namespace Orbit {
 		MouseButtonPressedEvent(int button);
 
 		std::string ToString() const;
-
-		static EventType GetStaticType();
+		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
 	class ORBIT_API MouseButtonReleasedEvent : public MouseButtonEvent {
@@ -60,7 +60,7 @@ namespace Orbit {
 		MouseButtonReleasedEvent(int button);
 
 		std::string ToString() const;
-		static EventType GetStaticType();
+		EVENT_CLASS_TYPE(MouseButtonReleased)
 	};
 
 }

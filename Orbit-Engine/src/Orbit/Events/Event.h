@@ -24,7 +24,7 @@ namespace Orbit {
 	class ORBIT_API Event {
 	public:
 		virtual const char* GetName() const { return NULL; };
-		virtual int GetCategoryFlags() const { return 0; };
+		virtual int GetCategoryFlags() const = 0;
 		virtual EventType GetEventType() const { return EventType::None; };
 
 		virtual std::string ToString() const { return GetName(); }
@@ -32,11 +32,15 @@ namespace Orbit {
 		inline bool IsInCategory(EventCategory category) {
 			return GetCategoryFlags() & category;
 		}
-	protected:
 		bool e_Handled = false;
+	protected:
 	};
 
 	inline std::ostream& operator<<(std::ostream& os, const Event& e) {
 		return os << e.ToString();
 	}
+
+#define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::##type; }\
+								virtual EventType GetEventType() const override { return GetStaticType(); }\
+								virtual const char* GetName() const override { return #type; }
 }

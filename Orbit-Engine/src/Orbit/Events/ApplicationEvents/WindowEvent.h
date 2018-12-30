@@ -12,8 +12,9 @@ namespace Orbit {
 
 		std::string ToString() const;
 
-		static EventType GetStaticType();
 		virtual int GetCategoryFlags() const;
+
+		EVENT_CLASS_TYPE(WindowResize)
 	private:
 		unsigned int m_width;
 		unsigned int m_height;
@@ -22,8 +23,8 @@ namespace Orbit {
 	class ORBIT_API WindowCloseEvent : public Event {
 	public: 
 		WindowCloseEvent();
-		static EventType GetStaticType();
 		virtual int GetCategoryFlags() const;
+		EVENT_CLASS_TYPE(WindowClose)
 	};
 }
 

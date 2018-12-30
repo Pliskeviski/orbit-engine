@@ -22,7 +22,7 @@ namespace Orbit {
 
 		std::string ToString() const;
 
-		static EventType GetStaticType();
+		EVENT_CLASS_TYPE(KeyPressed)
 	private:
 		int m_RepeatCount;
 	};
@@ -33,7 +33,7 @@ namespace Orbit {
 
 		std::string ToString() const;
 
-		static EventType GetStaticType();
+		EVENT_CLASS_TYPE(KeyRelease)
 	};
 }
 
