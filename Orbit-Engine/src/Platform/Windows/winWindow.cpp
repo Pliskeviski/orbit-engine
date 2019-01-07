@@ -1,8 +1,10 @@
 #include "obtpch.h"
 #include "winWindow.h"
 
+#include <glad/glad.h>
+
 #include "Orbit/Events/KeyEvents/KeyEvents.h"
-#include "Orbit/Events/MouseEvents/MouseEvent.h" 
+#include "Orbit/Events/MouseEvents/MouseEvent.h"
 #include "Orbit/Events/ApplicationEvents/WindowEvent.h"
 
 namespace Orbit {
@@ -56,6 +58,7 @@ namespace Orbit {
 		if (!s_GLFWInitialized) {
 			int success = glfwInit();
 			OBT_CORE_ASSERT(success, "Could not intialize GLFW!");
+
 			glfwSetErrorCallback(GLFWErrorCallback);
 			s_GLFWInitialized = true;
 		}
@@ -64,6 +67,10 @@ namespace Orbit {
 		glfwMakeContextCurrent(this->m_Window);
 		glfwSetWindowUserPointer(this->m_Window, &m_Data);
 		setVSync(true);
+
+		// Glad
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		OBT_CORE_ASSERT(status, "Failed to initialize Glad");
 
 		// GLFW callbacks
 		glfwSetWindowSizeCallback(this->m_Window, [](GLFWwindow* window, int width, int height) {

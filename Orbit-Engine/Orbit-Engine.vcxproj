@@ -56,8 +56,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessorDefinitions>OBT_PLATFORM_WINDOWS;OBT_ENABLE_ASSERTS;OBT_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Orbit-Engine\src;$(SolutionDir)Orbit-Engine\Libs\spdlog\include;$(SolutionDir)Orbit-Engine\Libs\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>OBT_PLATFORM_WINDOWS;OBT_ENABLE_ASSERTS;OBT_BUILD_DLL;GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Orbit-Engine\src;$(SolutionDir)Orbit-Engine\Libs\spdlog\include;$(SolutionDir)Orbit-Engine\Libs\GLFW\include;$(SolutionDir)Orbit-Engine\Libs\Glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>obtpch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -65,8 +65,8 @@
       <Command>xcopy /y /d "$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\*.dll" "$(SolutionDir)bin\$(Configuration)-$(Platform)\Sandbox\"</Command>
     </PostBuildEvent>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)Orbit-Engine\Libs\GLFW\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GLFW.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Orbit-Engine\Libs\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>GLFW.lib;Glad.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -100,7 +100,7 @@
     <ClInclude Include="src\Orbit\Events\MouseEvents\MouseEvent.h" />
     <ClInclude Include="src\Orbit\Layer\Layer.h" />
     <ClInclude Include="src\Orbit\Layer\LayerStack.h" />
-    <ClInclude Include="src\Orbit\Log.h" />
+    <ClInclude Include="src\Orbit\Log\Log.h" />
     <ClInclude Include="src\Orbit.h" />
     <ClInclude Include="src\Orbit\Application.h" />
     <ClInclude Include="src\Orbit\Core.h" />
@@ -114,10 +114,15 @@
     <ClCompile Include="src\Orbit\Events\KeyEvents\KeyEvents.cpp" />
     <ClCompile Include="src\Orbit\Events\MouseEvents\MouseEvent.cpp" />
     <ClCompile Include="src\Orbit\Layer\LayerStack.cpp" />
-    <ClCompile Include="src\Orbit\Log.cpp" />
+    <ClCompile Include="src\Orbit\Log\Log.cpp" />
     <ClCompile Include="src\Orbit\Application.cpp" />
     <ClCompile Include="src\Orbit\Events\ApplicationEvents\WindowEvent.cpp" />
     <ClCompile Include="src\Platform\Windows\winWindow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Libs\Glad\Glad.vcxproj">
+      <Project>{c7556224-0570-4bdc-861a-3659f78e87ce}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
