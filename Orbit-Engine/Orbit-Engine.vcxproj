@@ -94,6 +94,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\obtpch.h" />
+    <ClInclude Include="src\Orbit\Components\Component.h" />
+    <ClInclude Include="src\Orbit\Components\Mesh.h" />
+    <ClInclude Include="src\Orbit\Components\subMesh.h" />
     <ClInclude Include="src\Orbit\Events\KeyEvents\KeyEvents.h" />
     <ClInclude Include="src\Orbit\Events\Event.h" />
     <ClInclude Include="src\Orbit\Events\EventDispatcher.h" />
@@ -106,6 +109,8 @@
     <ClInclude Include="src\Orbit\Core.h" />
     <ClInclude Include="src\Orbit\EntryPoint.h" />
     <ClInclude Include="src\Orbit\Events\ApplicationEvents\WindowEvent.h" />
+    <ClInclude Include="src\Orbit\Renderer\BaseRenderer.h" />
+    <ClInclude Include="src\Orbit\Renderer\glRenderer\glRenderer.h" />
     <ClInclude Include="src\Orbit\Window.h" />
     <ClInclude Include="src\Platform\Windows\winWindow.h" />
   </ItemGroup>
