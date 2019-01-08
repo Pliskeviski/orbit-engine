@@ -1,14 +1,11 @@
 #pragma once
-
-#include "../BaseRenderer.h"
+#include "../Renderer.h"
 
 namespace Orbit {
-	class glRenderer : BaseRenderer {
+	class glRenderer : public Renderer {
 	public:
-		glRenderer(std::shared_ptr<Window> window) : BaseRenderer(window) {};
-		void Init() {}
+		glRenderer();
 		void Draw() {}
 		void Destroy() {}
-		void CreateMesh(std::shared_ptr<Mesh> mesh) {}
 	};
 }

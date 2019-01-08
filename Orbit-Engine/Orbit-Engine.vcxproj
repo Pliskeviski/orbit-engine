@@ -55,9 +55,9 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
       <PreprocessorDefinitions>OBT_PLATFORM_WINDOWS;OBT_ENABLE_ASSERTS;OBT_BUILD_DLL;GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Orbit-Engine\src;$(SolutionDir)Orbit-Engine\Libs\spdlog\include;$(SolutionDir)Orbit-Engine\Libs\GLFW\include;$(SolutionDir)Orbit-Engine\Libs\Glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Orbit-Engine\src;$(SolutionDir)Orbit-Engine\Libs\spdlog\include;$(SolutionDir)Orbit-Engine\Libs\GLFW\include;$(SolutionDir)Orbit-Engine\Libs\Glad\include;$(SolutionDir)Orbit-Engine\Libs\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>obtpch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -97,6 +97,7 @@
     <ClInclude Include="src\Orbit\Components\Component.h" />
     <ClInclude Include="src\Orbit\Components\Mesh.h" />
     <ClInclude Include="src\Orbit\Components\subMesh.h" />
+    <ClInclude Include="src\Orbit\Components\Transform.h" />
     <ClInclude Include="src\Orbit\Events\KeyEvents\KeyEvents.h" />
     <ClInclude Include="src\Orbit\Events\Event.h" />
     <ClInclude Include="src\Orbit\Events\EventDispatcher.h" />
@@ -109,19 +110,26 @@
     <ClInclude Include="src\Orbit\Core.h" />
     <ClInclude Include="src\Orbit\EntryPoint.h" />
     <ClInclude Include="src\Orbit\Events\ApplicationEvents\WindowEvent.h" />
-    <ClInclude Include="src\Orbit\Renderer\BaseRenderer.h" />
+    <ClInclude Include="src\Orbit\Renderer\Renderer.h" />
     <ClInclude Include="src\Orbit\Renderer\glRenderer\glRenderer.h" />
+    <ClInclude Include="src\Orbit\Renderer\Object.h" />
     <ClInclude Include="src\Orbit\Window.h" />
     <ClInclude Include="src\Platform\Windows\winWindow.h" />
+    <ClInclude Include="src\Utils\math.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\obtpch.cpp" />
+    <ClCompile Include="src\Orbit\Components\Mesh.cpp" />
+    <ClCompile Include="src\Orbit\Components\Transform.cpp" />
     <ClCompile Include="src\Orbit\Events\KeyEvents\KeyEvents.cpp" />
     <ClCompile Include="src\Orbit\Events\MouseEvents\MouseEvent.cpp" />
     <ClCompile Include="src\Orbit\Layer\LayerStack.cpp" />
     <ClCompile Include="src\Orbit\Log\Log.cpp" />
     <ClCompile Include="src\Orbit\Application.cpp" />
     <ClCompile Include="src\Orbit\Events\ApplicationEvents\WindowEvent.cpp" />
+    <ClCompile Include="src\Orbit\Renderer\glRenderer\glRenderer.cpp" />
+    <ClCompile Include="src\Orbit\Renderer\Object.cpp" />
+    <ClCompile Include="src\Orbit\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Platform\Windows\winWindow.cpp" />
   </ItemGroup>
   <ItemGroup>

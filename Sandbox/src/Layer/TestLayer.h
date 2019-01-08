@@ -7,10 +7,10 @@ public:
 	TestLayer() : Layer("Test Layer") {};
 
 	void OnUpdate() override {
-		ORBIT_INFO("TestLayer->Update");
+		//ORBIT_INFO("TestLayer->Update");
 	}
 
 	void OnEvent(Orbit::Event& event) override {
-		ORBIT_TRACE("{0}", event);
+		//ORBIT_TRACE("{0}", event);
 	}
 };

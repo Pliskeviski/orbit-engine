@@ -1,10 +1,11 @@
 #pragma once
-
+#include <string>
 #include "Component.h"
 
 namespace Orbit {
-	class Mesh : public Component {
-		Mesh(std::string& path);
+	class ORBIT_API Mesh : public Component {
+	public:
+		Mesh(std::string path);
 		void Draw();
 	};
 }

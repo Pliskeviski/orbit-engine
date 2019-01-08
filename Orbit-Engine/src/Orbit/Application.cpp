@@ -1,8 +1,7 @@
 #include "obtpch.h"
-
 #include "Application.h"
-
 #include "Events/EventDispatcher.h"
+#include "Renderer/Object.h"
 
 namespace Orbit {
 #define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
@@ -11,6 +10,8 @@ namespace Orbit {
 		this->m_Window = std::unique_ptr<Window>(Window::Create());
 		this->m_Running = true;
 		this->m_Window->setEventCallback(BIND_EVENT_FN(Application::onEvent));
+
+		this->m_Renderer = std::unique_ptr<Renderer>(Renderer::Create());
 	}
 
 	Application::~Application() {
@@ -35,7 +36,7 @@ namespace Orbit {
 		EventDispatcher disp(e);
 		disp.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::onWindowClose));
 
-		ORBIT_CORE_TRACE("{0}", e);
+		//ORBIT_CORE_TRACE("{0}", e);
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); ) { // Goes backwards
 			(*--it)->OnEvent(e);
@@ -51,5 +52,8 @@ namespace Orbit {
 
 	void Application::PushOverlay(Layer* layer) {
 		m_LayerStack.PushOverlay(layer);
+	}
+	std::shared_ptr<Window> Application::getWindow() {
+		return this->m_Window;
 	}
 }

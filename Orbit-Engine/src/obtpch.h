@@ -16,4 +16,5 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Utils/math.h"
 #include "Orbit/Log/Log.h"
