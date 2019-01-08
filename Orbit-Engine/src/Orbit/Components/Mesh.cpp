@@ -6,6 +6,9 @@ namespace Orbit {
 
 	}
 
+	Mesh::~Mesh() {
+	}
+
 	void Mesh::Draw() {
 
 	}

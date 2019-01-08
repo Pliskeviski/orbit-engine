@@ -10,7 +10,7 @@ namespace Orbit {
 	class ORBIT_API Component {
 	public:
 		Component(ComponentType type) : m_Type(type) {};
-		virtual ~Component() {};
+		virtual ~Component() { };
 		ComponentType GetType() {
 			return this->m_Type;
 		}

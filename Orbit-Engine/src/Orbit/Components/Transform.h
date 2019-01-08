@@ -115,6 +115,7 @@ namespace Orbit {
 		@ define transform scale (same for x, y, z)
 		*/
 		void setScale(float scale);
+		~Transform();
 	private:
 		Math::vec3 m_Position;
 		Math::vec3 m_Rotation;

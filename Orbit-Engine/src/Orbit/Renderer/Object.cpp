@@ -9,11 +9,19 @@ namespace Orbit {
 	Object::Object(std::string name) : m_Name(name), m_Active(true) {
 		
 		// All objects MUST have a transform component
-		std::shared_ptr<Component> t = std::make_shared<Transform>();
+		Component* t = new Transform();
 		this->addComponent(t);
 	}
 
-	void Object::addComponent(std::shared_ptr<Component> component) {
+	Object::~Object() {
+		for (Component* c : this->m_Components) {
+			c->~Component();
+			delete c;
+			this->m_Components.erase(this->m_Components.begin());
+		}
+	}
+
+	void Object::addComponent(Component* component) {
 		this->m_Components.emplace_back(component);
 	}
 

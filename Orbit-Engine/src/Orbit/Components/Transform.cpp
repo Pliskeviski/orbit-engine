@@ -89,4 +89,7 @@ namespace Orbit {
 		this->m_Scale = Math::vec3(scale);
 	}
 
+	Transform::~Transform() {
+	}
+
 }

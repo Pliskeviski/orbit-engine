@@ -14,31 +14,29 @@ namespace Orbit {
 	class ORBIT_API Object {
 	public:
 		Object(std::string name = "New Object");
+		~Object();
 
-		void addComponent(std::shared_ptr<Component> component);
+		void addComponent(Component* component);
 
 		template<typename T>
-		std::shared_ptr<T> getComponent();
+		T* getComponent();
 
 		void setActive(bool active);
 		bool isActive();
+
 	private:
 		bool m_Active;
 		std::string m_Name;
-		std::vector<std::shared_ptr<Component>> m_Components;
+		std::vector<Component*> m_Components;
 	};
 
 	template<typename T>
-	inline std::shared_ptr<T> Object::getComponent() {
+	inline T* Object::getComponent() {
 		for (unsigned int i = 0; i < m_Components.size(); i++) {
-			if (typeid(T) == typeid(*m_Components[i].get())) {
-				T* ptr_base = (T*)m_Components[i].get();
-
-				std::shared_ptr<T> ptr(ptr_base);
-				return ptr;
+			if (typeid(T) == typeid(*m_Components[i])) {
+				return (T*)m_Components[i];
 			}
 		}
-
 		return NULL;
 	}
 

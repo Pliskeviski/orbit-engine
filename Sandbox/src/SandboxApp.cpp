@@ -2,7 +2,7 @@
 #include "Layer/TestLayer.h"
 
 class Sandbox : public Orbit::Application {
-public: 
+public:
 	Sandbox() {
 		PushLayer(new TestLayer);
 

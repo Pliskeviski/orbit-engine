@@ -7,6 +7,6 @@
 // Entry Point
 #include "Orbit/EntryPoint.h"
 
-typedef std::shared_ptr<Orbit::Mesh> Mesh;
-typedef std::shared_ptr<Orbit::Object> Object;
-typedef std::shared_ptr<Orbit::Transform> Transform;
+typedef std::unique_ptr<Orbit::Object> Object;
+typedef Orbit::Mesh* Mesh;
+typedef Orbit::Transform* Transform;

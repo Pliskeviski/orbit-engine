@@ -82,10 +82,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\SandboxApp.cpp" />
+    <ClInclude Include="src\Layer\TestLayer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Layer\TestLayer.h" />
+    <ClCompile Include="src\SandboxApp.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
