@@ -1,7 +1,7 @@
 #include "obtpch.h"
-#include "Application.h"
-#include "Events/EventDispatcher.h"
-#include "Renderer/Object.h"
+
+#include "Orbit/Application/Application.h"
+#include "Orbit/Events/EventDispatcher.h"
 
 namespace Orbit {
 #define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
@@ -19,12 +19,17 @@ namespace Orbit {
 
 	void Application::Run() {
 		while (this->m_Running) {
+			Renderer::Update();
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
+
+			this->Update();
+
 			this->m_Window->OnUpdate();
 		}
+		this->Destroy();
 	}
 
 	bool Application::onWindowClose(WindowCloseEvent& e) {
@@ -35,8 +40,6 @@ namespace Orbit {
 	void Application::onEvent(Event& e) {
 		EventDispatcher disp(e);
 		disp.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::onWindowClose));
-
-		//ORBIT_CORE_TRACE("{0}", e);
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); ) { // Goes backwards
 			(*--it)->OnEvent(e);

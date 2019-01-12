@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Core.h"
-#include "Events/ApplicationEvents/WindowEvent.h"
-#include "Layer/LayerStack.h"
-#include "Window.h"
-#include "Renderer/Renderer.h"
-#include "Renderer/Object.h"
+#include "Orbit/Core.h"
+#include "Orbit/Events/ApplicationEvents/WindowEvent.h"
+#include "Orbit/Layer/LayerStack.h"
+#include "Orbit/Window.h"
+#include "Orbit/Renderer/Renderer.h"
+#include "Orbit/Object/Object.h"
 
 namespace Orbit {
 	class ORBIT_API Application {
@@ -13,6 +13,8 @@ namespace Orbit {
 		Application();
 		virtual ~Application();
 		void Run();
+		virtual void Update() {};
+		virtual void Destroy() {};
 
 		void onEvent(Event& e);
 

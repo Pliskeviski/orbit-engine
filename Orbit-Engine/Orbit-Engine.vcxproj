@@ -106,13 +106,15 @@
     <ClInclude Include="src\Orbit\Layer\LayerStack.h" />
     <ClInclude Include="src\Orbit\Log\Log.h" />
     <ClInclude Include="src\Orbit.h" />
-    <ClInclude Include="src\Orbit\Application.h" />
+    <ClInclude Include="src\Orbit\Application\Application.h" />
     <ClInclude Include="src\Orbit\Core.h" />
     <ClInclude Include="src\Orbit\EntryPoint.h" />
     <ClInclude Include="src\Orbit\Events\ApplicationEvents\WindowEvent.h" />
+    <ClInclude Include="src\Orbit\Renderer\glRenderer\Shader\Shader.h" />
+    <ClInclude Include="src\Orbit\Renderer\glRenderer\Shader\stringLoader.hpp" />
     <ClInclude Include="src\Orbit\Renderer\Renderer.h" />
     <ClInclude Include="src\Orbit\Renderer\glRenderer\glRenderer.h" />
-    <ClInclude Include="src\Orbit\Renderer\Object.h" />
+    <ClInclude Include="src\Orbit\Object\Object.h" />
     <ClInclude Include="src\Orbit\Window.h" />
     <ClInclude Include="src\Platform\Windows\winWindow.h" />
     <ClInclude Include="src\Utils\math.h" />
@@ -120,15 +122,18 @@
   <ItemGroup>
     <ClCompile Include="src\obtpch.cpp" />
     <ClCompile Include="src\Orbit\Components\Mesh.cpp" />
+    <ClCompile Include="src\Orbit\Components\subMesh.cpp" />
     <ClCompile Include="src\Orbit\Components\Transform.cpp" />
     <ClCompile Include="src\Orbit\Events\KeyEvents\KeyEvents.cpp" />
     <ClCompile Include="src\Orbit\Events\MouseEvents\MouseEvent.cpp" />
     <ClCompile Include="src\Orbit\Layer\LayerStack.cpp" />
     <ClCompile Include="src\Orbit\Log\Log.cpp" />
-    <ClCompile Include="src\Orbit\Application.cpp" />
+    <ClCompile Include="src\Orbit\Application\Application.cpp" />
     <ClCompile Include="src\Orbit\Events\ApplicationEvents\WindowEvent.cpp" />
     <ClCompile Include="src\Orbit\Renderer\glRenderer\glRenderer.cpp" />
-    <ClCompile Include="src\Orbit\Renderer\Object.cpp" />
+    <ClCompile Include="src\Orbit\Renderer\glRenderer\Shader\Shader.cpp" />
+    <ClCompile Include="src\Orbit\Renderer\glRenderer\Shader\stringLoader.cpp" />
+    <ClCompile Include="src\Orbit\Object\Object.cpp" />
     <ClCompile Include="src\Orbit\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Platform\Windows\winWindow.cpp" />
   </ItemGroup>
@@ -136,6 +141,10 @@
     <ProjectReference Include="Libs\Glad\Glad.vcxproj">
       <Project>{c7556224-0570-4bdc-861a-3659f78e87ce}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\Orbit\Renderer\glRenderer\Shader\Shaders\ColorFragmentShader.fragmentshader" />
+    <None Include="src\Orbit\Renderer\glRenderer\Shader\Shaders\TransformVertexShader.vertexshader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

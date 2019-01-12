@@ -7,10 +7,7 @@
 #include "Orbit/Components/Transform.h"
 #include "Orbit/Components/Mesh.h"
 
-
 namespace Orbit {
-	class Renderer;
-	
 	class ORBIT_API Object {
 	public:
 		Object(std::string name = "New Object");
@@ -23,7 +20,6 @@ namespace Orbit {
 
 		void setActive(bool active);
 		bool isActive();
-
 	private:
 		bool m_Active;
 		std::string m_Name;

@@ -1,9 +1,7 @@
 #include "obtpch.h"
 #include "Object.h"
 
-#include "../Components/Transform.h"
-
-#include "glRenderer/glRenderer.h"
+#include "Orbit/Components/Transform.h"
 
 namespace Orbit {
 	Object::Object(std::string name) : m_Name(name), m_Active(true) {
@@ -22,7 +20,7 @@ namespace Orbit {
 	}
 
 	void Object::addComponent(Component* component) {
-		this->m_Components.emplace_back(component);
+		this->m_Components.push_back(component);
 	}
 
 	void Object::setActive(bool active) {

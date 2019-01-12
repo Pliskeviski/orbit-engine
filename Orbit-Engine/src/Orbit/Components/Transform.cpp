@@ -3,7 +3,7 @@
 
 namespace Orbit {
 	Transform::Transform(Math::vec3 position, Math::vec3 rotation, Math::vec3 scale)
-	: m_Position(position), m_Rotation(rotation), m_Scale(scale), m_Parent(0), Component(TRANSFORM) {}
+	: m_Position(position), m_Rotation(rotation), m_Scale(scale), m_Parent(0) {}
 
 	void Transform::setPosition(Math::vec3 position) {
 		this->m_Position = position;
@@ -37,9 +37,9 @@ namespace Orbit {
 		m_Rotation.z = z;
 	}
 
-	void Transform::setParent(std::shared_ptr<Transform> parent) {
-		this->m_Parent = parent;
-	}
+	//void Transform::setParent(std::shared_ptr<Transform> parent) {
+	//	this->m_Parent = parent.get();
+	//}
 
 	Math::vec3 Transform::getPosition() {
 		return this->m_Position;
@@ -73,9 +73,9 @@ namespace Orbit {
 		return this->m_Rotation.z;
 	}
 
-	std::shared_ptr<Transform> Transform::getParent() {
-		return this->m_Parent;
-	}
+	//std::shared_ptr<Transform> Transform::getParent() {
+	//	return std::make_shared<Transform>(this->m_Parent);
+	//}
 
 	Math::vec3 Transform::getScale() {
 		return this->m_Scale;

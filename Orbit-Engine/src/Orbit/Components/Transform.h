@@ -3,6 +3,7 @@
 
 #include "Component.h"
 
+class Component;
 namespace Orbit {
 	class Transform : public Component {
 	public:
@@ -14,7 +15,7 @@ namespace Orbit {
 		/*
 			@ set transform position
 		*/
-		void setPosition(glm::vec3 position);
+		void setPosition(Math::vec3 position);
 
 		/*
 			@ set tranform X position
@@ -34,7 +35,7 @@ namespace Orbit {
 		/*
 			@ set transform rotation
 		*/
-		void setRotation(glm::vec3 rotation);
+		void setRotation(Math::vec3 rotation);
 
 		/*
 			@ set transform X rotation
@@ -54,7 +55,7 @@ namespace Orbit {
 		/*
 			@ set transform parent
 		*/
-		void setParent(std::shared_ptr<Transform> parent);
+		//void setParent(std::shared_ptr<Transform> parent);
 
 		/*
 			@ get transform global location
@@ -100,7 +101,7 @@ namespace Orbit {
 			@ return transform parent
 			@ return NULL if none
 		*/
-		std::shared_ptr<Transform> getParent();
+		//std::shared_ptr<Transform> getParent();
 
 		/*
 			@ return transform scale
@@ -110,7 +111,7 @@ namespace Orbit {
 		/*
 			@ define transform scale (x, y, z)
 		*/
-		void setScale(glm::vec3 scale);
+		void setScale(Math::vec3 scale);
 		/*
 		@ define transform scale (same for x, y, z)
 		*/
@@ -120,6 +121,6 @@ namespace Orbit {
 		Math::vec3 m_Position;
 		Math::vec3 m_Rotation;
 		Math::vec3 m_Scale;
-	 	std::shared_ptr<Transform> m_Parent;
+	 	Transform* m_Parent;
 	};
 }

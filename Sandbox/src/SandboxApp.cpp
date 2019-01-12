@@ -6,17 +6,23 @@ public:
 	Sandbox() {
 		PushLayer(new TestLayer);
 
-		Object obj(new Orbit::Object());
-		Mesh mesh(new Orbit::Mesh("nopath"));
+		this->obj = new Orbit::Object("Test Object");
+
+		Orbit::Mesh* mesh = new Orbit::Mesh("nopath");
 		obj->addComponent(mesh);
 
-		Mesh test = obj->getComponent<Orbit::Mesh>();
-		Transform test1 = obj->getComponent<Orbit::Transform>();
+		Orbit::Mesh* test = obj->getComponent<Orbit::Mesh>();
+		Orbit::Transform* test1 = obj->getComponent<Orbit::Transform>();
+	}
+
+	void Update() {
+		this->obj->getComponent<Orbit::Mesh>()->Draw();
 	}
 
 	~Sandbox() {
-
 	}
+private:
+	Orbit::Object* obj;
 };
 
 Orbit::Application* Orbit::CreateApplication() {

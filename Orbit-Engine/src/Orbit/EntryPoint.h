@@ -2,7 +2,7 @@
 
 #ifdef OBT_PLATFORM_WINDOWS
 
-#include "Application.h"
+#include "Application/Application.h"
 
 extern Orbit::Application* Orbit::CreateApplication();
 
