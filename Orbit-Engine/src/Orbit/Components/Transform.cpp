@@ -3,7 +3,8 @@
 
 namespace Orbit {
 	Transform::Transform(Math::vec3 position, Math::vec3 rotation, Math::vec3 scale)
-	: m_Position(position), m_Rotation(rotation), m_Scale(scale), m_Parent(0) {}
+	: m_Position(position), m_Rotation(rotation), m_Scale(scale), m_Parent(0) {
+	}
 
 	void Transform::setPosition(Math::vec3 position) {
 		this->m_Position = position;

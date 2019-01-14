@@ -30,6 +30,9 @@ namespace Orbit {
 	void winWindow::OnUpdate() {
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
+
+		glfwSetCursorPos(this->m_Window, this->getWidth() / 2, this->getHeight() / 2);
+		glfwSetInputMode(this->m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	}
 
 	unsigned int winWindow::getWidth() const {

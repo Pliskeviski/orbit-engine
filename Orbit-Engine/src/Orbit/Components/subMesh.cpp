@@ -4,7 +4,7 @@
 #include "Orbit/Renderer/Renderer.h"
 
 namespace Orbit {
-	subMesh::subMesh() : m_Active(true) {
+	subMesh::subMesh(Transform* parent) : m_Active(true), m_Parent(parent) {
 		this->m_Transform = new Transform();
 
 		// Mock values
@@ -29,6 +29,6 @@ namespace Orbit {
 	}
 
 	subMesh::~subMesh() {
-		delete this->m_Transform;
+		//delete this->m_Transform;
 	}
 }

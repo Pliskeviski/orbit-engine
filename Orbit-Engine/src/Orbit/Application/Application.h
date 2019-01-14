@@ -22,6 +22,8 @@ namespace Orbit {
 		void PushOverlay(Layer* layer);
 		
 		std::shared_ptr<Window> getWindow();
+
+		static Application* getApplication();
 	private:
 		bool onWindowClose(WindowCloseEvent& e);
 
@@ -29,6 +31,7 @@ namespace Orbit {
 		std::shared_ptr<Renderer> m_Renderer;
 		bool m_Running;
 		LayerStack m_LayerStack;
+		static Application* m_Application;
 	};
 
 	Application* CreateApplication();

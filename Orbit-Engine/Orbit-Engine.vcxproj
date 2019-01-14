@@ -94,7 +94,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\obtpch.h" />
+    <ClInclude Include="src\Orbit\Components\Camera.h" />
     <ClInclude Include="src\Orbit\Components\Component.h" />
+    <ClInclude Include="src\Orbit\Components\ComponentLayer\ComponentLayer.h" />
     <ClInclude Include="src\Orbit\Components\Mesh.h" />
     <ClInclude Include="src\Orbit\Components\subMesh.h" />
     <ClInclude Include="src\Orbit\Components\Transform.h" />
@@ -102,6 +104,8 @@
     <ClInclude Include="src\Orbit\Events\Event.h" />
     <ClInclude Include="src\Orbit\Events\EventDispatcher.h" />
     <ClInclude Include="src\Orbit\Events\MouseEvents\MouseEvent.h" />
+    <ClInclude Include="src\Orbit\Input\Input.h" />
+    <ClInclude Include="src\Orbit\Input\InputLayer.h" />
     <ClInclude Include="src\Orbit\Layer\Layer.h" />
     <ClInclude Include="src\Orbit\Layer\LayerStack.h" />
     <ClInclude Include="src\Orbit\Log\Log.h" />
@@ -121,11 +125,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\obtpch.cpp" />
+    <ClCompile Include="src\Orbit\Components\Camera.cpp" />
+    <ClCompile Include="src\Orbit\Components\ComponentLayer\ComponentLayer.cpp" />
     <ClCompile Include="src\Orbit\Components\Mesh.cpp" />
     <ClCompile Include="src\Orbit\Components\subMesh.cpp" />
     <ClCompile Include="src\Orbit\Components\Transform.cpp" />
     <ClCompile Include="src\Orbit\Events\KeyEvents\KeyEvents.cpp" />
     <ClCompile Include="src\Orbit\Events\MouseEvents\MouseEvent.cpp" />
+    <ClCompile Include="src\Orbit\Input\Input.cpp" />
     <ClCompile Include="src\Orbit\Layer\LayerStack.cpp" />
     <ClCompile Include="src\Orbit\Log\Log.cpp" />
     <ClCompile Include="src\Orbit\Application\Application.cpp" />

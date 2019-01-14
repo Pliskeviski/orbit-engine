@@ -2,8 +2,9 @@
 #include "glRenderer.h"
 
 #include <vector>
-
 #include "Orbit/Core.h"
+
+#include "Orbit/Components/Camera.h"
 
 namespace Orbit {
 	glRenderer::glRenderer() {
@@ -56,7 +57,7 @@ namespace Orbit {
 
 		return 1;
 	}
-	int glRenderer::drawSubMesh(subMesh* submesh) {
+	int glRenderer::drawSubMesh(subMesh* submesh, Camera* scene_camera) {
 		/*glBindVertexArray(submesh->m_VAO);
 		for (unsigned int j = 0; j < submesh->m_VBOs.size(); j++) {
 			glEnableVertexAttribArray(j);
@@ -66,6 +67,25 @@ namespace Orbit {
 		for (int j = 0; j < submesh->m_VBOs.size(); j++) {
 			glDisableVertexAttribArray(j);
 		}*/
+
+		GLuint ViewID       = glGetUniformLocation(this->m_Shader->getID(), "view");
+		GLuint ModelID      = glGetUniformLocation(this->m_Shader->getID(), "model");
+		GLuint ProjectionID = glGetUniformLocation(this->m_Shader->getID(), "projection");
+
+		Math::mat4 Projection	= glm::perspective(scene_camera->getFov(), (GLfloat)scene_camera->m_Width / (GLfloat)scene_camera->m_Height, 0.1f, 1000.0f);
+		Math::mat4 View			= scene_camera->getViewMatrix();
+		Math::mat4 Model		= glm::translate(glm::mat4(1.f), submesh->m_Transform->getPosition()  + submesh->m_Parent->getPosition());
+		Math::mat4 ModelRX		= glm::rotate	(glm::mat4(1.f), submesh->m_Transform->getRotationX() + submesh->m_Parent->getRotationX(), glm::vec3(1.0f, .0f, .0f));
+		Math::mat4 ModelRY		= glm::rotate	(glm::mat4(1.f), submesh->m_Transform->getRotationY() + submesh->m_Parent->getRotationY(), glm::vec3(.0f, 1.0f, .0f));
+		Math::mat4 ModelRZ		= glm::rotate	(glm::mat4(1.f), submesh->m_Transform->getRotationZ() + submesh->m_Parent->getRotationZ(), glm::vec3(.0f, .0f, 1.0f));
+		Math::mat4 ModelScale	= glm::scale	(glm::mat4(1.f), submesh->m_Parent->getScale()		  * submesh->m_Transform->getScale());
+		Math::mat4 ModelRotation = ModelRX * ModelRY * ModelRZ;
+
+		Model *= ModelRotation * ModelScale;
+
+		glUniformMatrix4fv(ModelID, 1, GL_FALSE, glm::value_ptr(Model));
+		glUniformMatrix4fv(ViewID, 1, GL_FALSE, glm::value_ptr(View));
+		glUniformMatrix4fv(ProjectionID, 1, GL_FALSE, glm::value_ptr(Projection));
 
 		glBindVertexArray(submesh->m_VAO);
 		glDrawElements(GL_TRIANGLES, submesh->m_IndicesCount, GL_UNSIGNED_INT, 0);

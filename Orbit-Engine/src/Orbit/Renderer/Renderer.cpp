@@ -4,7 +4,8 @@
 
 namespace Orbit {
 	Renderer* Renderer::m_Renderer = 0;
-
+	Camera* Renderer::m_ActiveCamera = 0;
+	
 	Renderer* Orbit::Renderer::Create(Render api) {
 		if (api == OPENGL) {
 			m_Renderer = new glRenderer;
@@ -32,12 +33,19 @@ namespace Orbit {
 		return 0;
 	}
 
-	uint32_t Renderer::DrawSubMesh(subMesh* submesh) {
+	uint32_t Renderer::DrawSubMesh(subMesh* submesh, Camera* scene_camera) {
 		if (m_Renderer) {
-			return m_Renderer->drawSubMesh(submesh);
+			return m_Renderer->drawSubMesh(submesh, scene_camera);
 		}
 
 		ORBIT_CORE_ERROR("NO RENDER FOUND!");
 		return 0;
+	}
+
+	Camera* Renderer::getActiveCamera() {
+		return Renderer::m_ActiveCamera;
+	}
+	void Renderer::setActiveCamera(Camera* camera) {
+		Renderer::m_ActiveCamera = camera;
 	}
 }

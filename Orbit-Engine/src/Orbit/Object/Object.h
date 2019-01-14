@@ -5,6 +5,7 @@
 
 #include "Orbit/Components/Component.h"
 #include "Orbit/Components/Transform.h"
+#include "Orbit/Components/Camera.h"
 #include "Orbit/Components/Mesh.h"
 
 namespace Orbit {

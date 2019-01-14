@@ -8,7 +8,7 @@
 namespace Orbit {
 	class subMesh {
 	public:
-		subMesh();
+		subMesh(Transform* parent);
 		~subMesh();
 		
 		bool m_Active;
@@ -24,7 +24,7 @@ namespace Orbit {
 		uint32_t m_IndicesCount;
 		uint32_t m_VerticesCount;
 
-		//Mesh* m_Parent;
+		Transform* m_Parent;
 		Transform* m_Transform;
 	};
 }

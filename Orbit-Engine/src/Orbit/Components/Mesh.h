@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "Component.h"
+#include "Transform.h"
 #include "subMesh.h"
 
 class Component;
@@ -15,5 +16,6 @@ namespace Orbit {
 		void addSubMesh();
 	private:
 		std::vector<subMesh*> m_subMesh;
+		Transform* m_Transform;
 	};
 }

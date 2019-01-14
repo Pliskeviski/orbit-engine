@@ -12,7 +12,7 @@ namespace Orbit {
 		glRenderer();
 		void Draw();
 		uint32_t CreateBuffer(subMesh* submesh);
-		int drawSubMesh(subMesh* submesh);
+		int drawSubMesh(subMesh* submesh, Camera* scene_camera);
 		void Destroy() {}
 	private:
 		GLuint genVBO(subMesh* submesh, GLsizeiptr size, GLint dataSize, const void* data, GLenum usage);
