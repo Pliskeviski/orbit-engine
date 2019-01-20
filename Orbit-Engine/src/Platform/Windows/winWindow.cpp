@@ -31,8 +31,8 @@ namespace Orbit {
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 
-		glfwSetCursorPos(this->m_Window, this->getWidth() / 2, this->getHeight() / 2);
-		glfwSetInputMode(this->m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		if (this->m_Data.cursor_center)
+			glfwSetCursorPos(this->m_Window, this->getWidth() / 2, this->getHeight() / 2);
 	}
 
 	unsigned int winWindow::getWidth() const {
@@ -143,6 +143,17 @@ namespace Orbit {
 			MouseMovedEvent event((float)xPos, (float)yPos);
 			data.eventCallback(event);
 		});
+	}
+
+	void winWindow::setCursorVisible(bool visible) {
+		if (visible)
+			glfwSetInputMode(this->m_Window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+		else
+			glfwSetInputMode(this->m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	}
+
+	void winWindow::forceCursorCenter(bool center) {
+		this->m_Data.cursor_center = center;
 	}
 
 	void winWindow::Destroy() {

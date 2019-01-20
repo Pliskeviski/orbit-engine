@@ -19,7 +19,8 @@ namespace Orbit {
 
 		void setVSync(bool enabled) override;
 		bool isVSync() const override;
-	
+		void setCursorVisible(bool value);
+		void forceCursorCenter(bool value);
 	private:
 		virtual void Init(const WindowConfig& config);
 		virtual void Destroy();
@@ -32,6 +33,7 @@ namespace Orbit {
 			std::string title;
 			unsigned int width;
 			unsigned int height;
+			bool cursor_center;
 			bool vsync;
 
 			EventCallbackFn eventCallback;

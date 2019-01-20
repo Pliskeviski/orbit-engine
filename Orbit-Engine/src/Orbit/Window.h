@@ -30,6 +30,8 @@ namespace Orbit {
 
 		virtual void setEventCallback(const EventCallbackFn& callback) = 0;
 		virtual void setVSync(bool enabled) = 0;
+		virtual void setCursorVisible(bool value) = 0;
+		virtual void forceCursorCenter(bool value) = 0;
 		virtual bool isVSync() const = 0;
 
 		static Window* Create(const WindowConfig& props = WindowConfig());
