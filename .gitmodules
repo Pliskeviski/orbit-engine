@@ -1,1 +1,4 @@
 
+[submodule "Orbit-Engine/deps/GLFW"]
+	path = Orbit-Engine/deps/GLFW
+	url = https://github.com/Pliskeviski/glfw

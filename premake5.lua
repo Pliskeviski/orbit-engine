@@ -15,13 +15,13 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Orbit-Engine/deps/GLFW/include"
 IncludeDir["Glad"] = "Orbit-Engine/deps/Glad/include"
-IncludeDir["ImGui"] = "Orbit-Engine/deps/imgui"
+-- IncludeDir["ImGui"] = "Orbit-Engine/deps/imgui"
 IncludeDir["glm"] = "Orbit-Engine/deps/glm"
 
 
 include "%{IncludeDir.GLFW}\\.."
 include "%{IncludeDir.Glad}\\.."
-include "%{IncludeDir.ImGui}"
+-- include "%{IncludeDir.ImGui}"
 
 project "Orbit-Engine"
 	location "Orbit-Engine"
@@ -49,7 +49,7 @@ project "Orbit-Engine"
 		"%{prj.name}/deps/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}",
+		-- "%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}"
 	}
 
@@ -57,7 +57,7 @@ project "Orbit-Engine"
 	{ 
 		"GLFW",
 		"Glad",
-		"ImGui",
+		-- "ImGui",
 		"opengl32.lib"
 	}
 
