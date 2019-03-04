@@ -1,6 +1,1 @@
-[submodule "Orbit-Engine/Libs/spdlog"]
-	path = Orbit-Engine/Libs/spdlog
-	url = https://github.com/gabime/spdlog
-[submodule "Orbit-Engine/Libs/glm"]
-	path = Orbit-Engine/Libs/glm
-	url = https://github.com/g-truc/glm
+
