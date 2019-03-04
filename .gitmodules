@@ -2,3 +2,6 @@
 [submodule "Orbit-Engine/deps/GLFW"]
 	path = Orbit-Engine/deps/GLFW
 	url = https://github.com/Pliskeviski/glfw
+[submodule "Orbit-Engine/deps/spdlog"]
+	path = Orbit-Engine/deps/spdlog
+	url = https://github.com/gabime/spdlog
