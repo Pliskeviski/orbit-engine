@@ -11,3 +11,6 @@
 [submodule "Orbit-Engine/deps/imgui"]
 	path = Orbit-Engine/deps/imgui
 	url = https://github.com/Pliskeviski/imgui
+[submodule "Orbit-Engine/deps/MeshConverter"]
+	path = Orbit-Engine/deps/MeshConverter
+	url = https://github.com/Pliskeviski/MeshConverter

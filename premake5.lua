@@ -16,11 +16,13 @@ IncludeDir["GLFW"] = "Orbit-Engine/deps/GLFW/include"
 IncludeDir["Glad"] = "Orbit-Engine/deps/Glad/include"
 IncludeDir["ImGui"] = "Orbit-Engine/deps/imgui"
 IncludeDir["glm"] = "Orbit-Engine/deps/glm"
+IncludeDir["Converter"] = "Orbit-Engine/deps/meshconverter"
 
 
 include "Orbit-Engine/deps/GLFW"
 include "Orbit-Engine/deps/Glad"
 include "Orbit-Engine/deps/imgui"
+include "Orbit-Engine/deps/meshconverter"
 
 project "Orbit-Engine"
 	location "Orbit-Engine"
@@ -49,7 +51,8 @@ project "Orbit-Engine"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.Converter}",
 	}
 
 	links 
@@ -57,6 +60,7 @@ project "Orbit-Engine"
 		"GLFW",
 		"Glad",
 		"ImGui",
+		"Converter",
 		"opengl32.lib",
 	}
 
