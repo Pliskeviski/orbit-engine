@@ -57,7 +57,7 @@ project "Orbit-Engine"
 		"GLFW",
 		"Glad",
 		"ImGui",
-		"opengl32.lib"
+		"opengl32.lib",
 	}
 
 	filter "system:windows"
