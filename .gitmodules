@@ -8,3 +8,6 @@
 [submodule "Orbit-Engine/deps/glm"]
 	path = Orbit-Engine/deps/glm
 	url = https://github.com/g-truc/glm
+[submodule "Orbit-Engine/deps/imgui"]
+	path = Orbit-Engine/deps/imgui
+	url = https://github.com/Pliskeviski/imgui
