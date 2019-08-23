@@ -43,7 +43,14 @@ namespace Orbit {
 	//}
 
 	Math::vec3 Transform::getPosition() {
-		return this->m_Position;
+		Transform* parent = this->getParent();
+
+		if (parent == NULL) {
+			return this->m_Position;
+		}
+		else {
+			return this->m_Position + this->getParent()->getPosition();
+		}
 	}
 
 	float Transform::getPositionX() {
@@ -59,7 +66,14 @@ namespace Orbit {
 	}
 
 	Math::vec3 Transform::getRotation() {
-		return this->m_Rotation;
+		Transform* parent = this->getParent();
+
+		if (parent == NULL) {
+			return this->m_Rotation;
+		}
+		else {
+			return this->m_Rotation + this->getParent()->getRotation();
+		}
 	}
 
 	float Transform::getRotationX() {
@@ -88,6 +102,14 @@ namespace Orbit {
 
 	void Transform::setScale(float scale) {
 		this->m_Scale = Math::vec3(scale);
+	}
+
+	void Transform::setParent(Component* parent) {
+		this->m_Parent = (Transform*)parent;
+	}
+
+	Transform* Transform::getParent() {
+		return this->m_Parent;
 	}
 
 	Transform::~Transform() {

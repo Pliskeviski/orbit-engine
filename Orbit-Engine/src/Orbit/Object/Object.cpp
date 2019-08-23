@@ -18,8 +18,9 @@ namespace Orbit {
 			this->m_Components.erase(this->m_Components.begin());
 		}
 	}
-
+	 
 	void Object::addComponent(Component* component) {
+		component->setParent(this->getComponent<Transform>());
 		this->m_Components.push_back(component);
 	}
 

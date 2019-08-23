@@ -2,19 +2,23 @@
 #include "Layer/TestLayer.h"
 
 float t = 0;
+namespace defaults {
+	const std::string assets_dir = __FILE__ "\\..\\..\\assets\\";
+}
 
 class Sandbox : public Orbit::Application {
 public:
 	Sandbox() {
 		PushLayer(new TestLayer);
-
+		
 		this->m_MainCamera = new Orbit::Object("Camera");
 		this->m_MainCamera->addComponent(new Orbit::Camera(Orbit::Math::vec3(0.f, 0.f, -1.0f)));
 
 		this->obj = new Orbit::Object("Test Object");
 
-		Orbit::Mesh* mesh = new Orbit::Mesh("nopath");
+		Orbit::Mesh* mesh = new Orbit::Mesh(defaults::assets_dir + "Box_low.obt");
 		obj->addComponent(mesh);
+		obj->setPosition(10, 10, 10);
 
 		Orbit::Mesh* test = obj->getComponent<Orbit::Mesh>();
 		Orbit::Transform* test1 = obj->getComponent<Orbit::Transform>();

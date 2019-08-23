@@ -21,6 +21,12 @@ namespace Orbit {
 
 		void setActive(bool active);
 		bool isActive();
+
+		void inline setPosition(float x, float y, float z) {
+			Transform* t = this->getComponent<Transform>();
+
+			t->setPosition(Orbit::Math::vec3(x, y, z));
+		}
 	private:
 		bool m_Active;
 		std::string m_Name;

@@ -3,10 +3,18 @@
 
 #include "Orbit/Renderer/Renderer.h"
 
+#include "MeshLoader/MeshLoader.h"
+
 namespace Orbit {
 	Mesh::Mesh(std::string path) {
 		this->m_Transform = new Transform();
-		this->addSubMesh();
+		
+		MeshLoader::loadMesh(path, this);
+
+		for (int i = 0; i < this->m_subMesh.size(); i++) {
+			this->m_subMesh[i]->Generate();
+			this->m_subMesh[i]->m_Transform->setParent(this->m_Transform);
+		}
 	}
 
 	Mesh::~Mesh() {
@@ -17,8 +25,15 @@ namespace Orbit {
 			Renderer::DrawSubMesh(sm, Renderer::getActiveCamera());
 	}
 
-	void Mesh::addSubMesh() {
-		subMesh* submesh = new subMesh(this->m_Transform);
-		this->m_subMesh.push_back(submesh);
+	std::vector<subMesh*>& Mesh::getSubMeshes() {
+		return this->m_subMesh;
+	}
+
+	Transform* Mesh::getTransform() {
+		return this->m_Transform;
+	}
+
+	void Mesh::setParent(Component* parent) {
+		this->m_Transform->setParent(parent);
 	}
 }

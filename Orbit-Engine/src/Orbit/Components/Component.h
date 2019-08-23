@@ -5,6 +5,7 @@ namespace Orbit {
 	class Component {
 	public:
 		Component() {};
+		virtual void setParent(Component* parent) {};
 		virtual ~Component() {};
 	};
 }

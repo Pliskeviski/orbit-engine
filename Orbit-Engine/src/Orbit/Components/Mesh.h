@@ -13,7 +13,11 @@ namespace Orbit {
 		Mesh(std::string path);
 		~Mesh();
 		void Draw();
-		void addSubMesh();
+		std::vector<subMesh*>& getSubMeshes();
+		Transform* getTransform();
+		
+		// @ Componet's override
+		void setParent(Component* parent) override;
 	private:
 		std::vector<subMesh*> m_subMesh;
 		Transform* m_Transform;

@@ -35,7 +35,7 @@ namespace Orbit {
 		//// Add buffers 
 		submesh->m_VBOs.push_back(genVBO(submesh, submesh->m_VerticesCount * sizeof(glm::vec3), 3, &submesh->m_Vertices[0], GL_STATIC_DRAW));
 
-		////if (submesh->hasUVs)
+		//if (submesh->hasUVs)
 		////	s_mesh->VBOs.push_back(genVBO(s_mesh, s_mesh->vertSize * sizeof(glm::vec2), 2, &s_mesh->UVs[0], GL_STATIC_DRAW));
 
 		////if (s_mesh->hasNormals)
@@ -58,15 +58,15 @@ namespace Orbit {
 		return 1;
 	}
 	int glRenderer::drawSubMesh(subMesh* submesh, Camera* scene_camera) {
-		/*glBindVertexArray(submesh->m_VAO);
-		for (unsigned int j = 0; j < submesh->m_VBOs.size(); j++) {
-			glEnableVertexAttribArray(j);
-		}
-
-		glDrawElements(GL_TRIANGLES, submesh->m_IndicesCount, GL_UNSIGNED_SHORT, (void*)submesh->m_Indices[0]);
-		for (int j = 0; j < submesh->m_VBOs.size(); j++) {
-			glDisableVertexAttribArray(j);
-		}*/
+		//glBindVertexArray(submesh->m_VAO);
+		//for (unsigned int j = 0; j < submesh->m_VBOs.size(); j++) {
+		//	glEnableVertexAttribArray(j);
+		//}
+		//
+		//glDrawElements(GL_TRIANGLES, submesh->m_IndicesCount, GL_UNSIGNED_SHORT, (void*)submesh->m_Indices[0]);
+		//for (int j = 0; j < submesh->m_VBOs.size(); j++) {
+		//	glDisableVertexAttribArray(j);
+		//}
 
 		GLuint ViewID       = glGetUniformLocation(this->m_Shader->getID(), "view");
 		GLuint ModelID      = glGetUniformLocation(this->m_Shader->getID(), "model");
@@ -74,11 +74,14 @@ namespace Orbit {
 
 		Math::mat4 Projection	= glm::perspective(scene_camera->getFov(), (GLfloat)scene_camera->m_Width / (GLfloat)scene_camera->m_Height, 0.1f, 1000.0f);
 		Math::mat4 View			= scene_camera->getViewMatrix();
-		Math::mat4 Model		= glm::translate(glm::mat4(1.f), submesh->m_Transform->getPosition()  + submesh->m_Parent->getPosition());
-		Math::mat4 ModelRX		= glm::rotate	(glm::mat4(1.f), submesh->m_Transform->getRotationX() + submesh->m_Parent->getRotationX(), glm::vec3(1.0f, .0f, .0f));
-		Math::mat4 ModelRY		= glm::rotate	(glm::mat4(1.f), submesh->m_Transform->getRotationY() + submesh->m_Parent->getRotationY(), glm::vec3(.0f, 1.0f, .0f));
-		Math::mat4 ModelRZ		= glm::rotate	(glm::mat4(1.f), submesh->m_Transform->getRotationZ() + submesh->m_Parent->getRotationZ(), glm::vec3(.0f, .0f, 1.0f));
-		Math::mat4 ModelScale	= glm::scale	(glm::mat4(1.f), submesh->m_Parent->getScale()		  * submesh->m_Transform->getScale());
+
+		Math::vec3 s_Parent_Pos = submesh->m_Transform->getParent()->getPosition();
+		Math::vec3 s_Parent_Rot = submesh->m_Transform->getParent()->getRotation();
+		Math::mat4 Model		= glm::translate(glm::mat4(1.f), submesh->m_Transform->getPosition()  + s_Parent_Pos);
+		Math::mat4 ModelRX		= glm::rotate	(glm::mat4(1.f), submesh->m_Transform->getRotationX() + s_Parent_Rot.x, glm::vec3(1.0f, .0f, .0f));
+		Math::mat4 ModelRY		= glm::rotate	(glm::mat4(1.f), submesh->m_Transform->getRotationY() + s_Parent_Rot.y, glm::vec3(.0f, 1.0f, .0f));
+		Math::mat4 ModelRZ		= glm::rotate	(glm::mat4(1.f), submesh->m_Transform->getRotationZ() + s_Parent_Rot.z, glm::vec3(.0f, .0f, 1.0f));
+		Math::mat4 ModelScale	= glm::scale	(glm::mat4(1.f), submesh->m_Transform->getScale()     * submesh->m_Transform->getScale()); // TODO
 		Math::mat4 ModelRotation = ModelRX * ModelRY * ModelRZ;
 
 		Model *= ModelRotation * ModelScale;

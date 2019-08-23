@@ -116,6 +116,17 @@ namespace Orbit {
 		@ define transform scale (same for x, y, z)
 		*/
 		void setScale(float scale);
+
+		/*
+			@ Overrides setParent from base class
+		*/
+		void setParent(Component* parent) override;
+
+		/*
+			@ Return parent transform
+		*/
+		Transform* getParent();
+
 		~Transform();
 	private:
 		Math::vec3 m_Position;
