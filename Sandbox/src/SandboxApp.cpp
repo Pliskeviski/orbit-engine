@@ -27,12 +27,13 @@ public:
 
 		Orbit::Mesh* test = obj->getComponent<Orbit::Mesh>();
 		Orbit::Transform* test1 = obj->getComponent<Orbit::Transform>();
-		test1->setPositionX(1.f);
+		test1->setPositionX(10.f);
 		test1->setScale(10.f);
 
 		obj->setUpdateFn([](float ms, Orbit::Object* m_this) {
 			Orbit::Transform* transform = m_this->getComponent<Orbit::Transform>();
-			transform->setPositionX(transform->getPositionX() + (-1 * ms));
+			transform->setPositionX(transform->getPositionX() + (-1.5 * ms));
+			//transform->setRotationX(transform->getRotationX() + (-2 * ms));
 			//ORBIT_CORE_INFO("HWLOOOOASD {0}", ms);
 		});
 

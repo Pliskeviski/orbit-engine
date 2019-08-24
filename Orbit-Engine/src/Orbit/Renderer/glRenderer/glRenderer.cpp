@@ -14,9 +14,15 @@ namespace Orbit {
 		const GLubyte* version = glGetString(GL_VERSION);
 		const GLubyte* renderer = glGetString(GL_RENDERER);
 
-		std::string vertexPath   = __FILE__ "\\..\\Shader\\Shaders\\TransformVertexShader.vertexshader";
-		std::string fragmentPath = __FILE__ "\\..\\Shader\\Shaders\\ColorFragmentShader.fragmentshader";
+		//std::string vertexPath   = __FILE__ "\\..\\Shader\\Shaders\\TransformVertexShader.vertexshader";
+		//std::string fragmentPath = __FILE__ "\\..\\Shader\\Shaders\\ColorFragmentShader.fragmentshader";
+		
+		std::string vertexPath = __FILE__ "\\..\\Shader\\Shaders\\pbr.vertexshader";
+		std::string fragmentPath = __FILE__ "\\..\\Shader\\Shaders\\pbr.fragmentshader";
 		this->m_Shader = new Shader(vertexPath, fragmentPath);
+
+		this->m_Shader->setVec3("lightPositions[0]", Math::vec3(0, 0, 0));
+		this->m_Shader->setVec3("lightColors[0]", Math::vec3(100, 100, 100));
 
 		glViewport(0, 0, 1280, 768);
 
@@ -28,7 +34,7 @@ namespace Orbit {
 	}
 
 	void glRenderer::Draw() {
-		glClearColor(0.4f, 0.4f, 0.4f, 1.0f);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		this->m_Shader->Use();
 	}
@@ -74,6 +80,9 @@ namespace Orbit {
 		GLuint ModelID      = glGetUniformLocation(this->m_Shader->getID(), "model");
 		GLuint ProjectionID = glGetUniformLocation(this->m_Shader->getID(), "projection");
 
+		GLuint CamPosID = glGetUniformLocation(this->m_Shader->getID(), "camPos");
+
+
 		Math::mat4 Projection	= glm::perspective(scene_camera->getFov(), (GLfloat)scene_camera->m_Width / (GLfloat)scene_camera->m_Height, 0.1f, 1000.0f);
 		Math::mat4 View			= scene_camera->getViewMatrix();
 
@@ -92,6 +101,8 @@ namespace Orbit {
 		glUniformMatrix4fv(ModelID, 1, GL_FALSE, glm::value_ptr(Model));
 		glUniformMatrix4fv(ViewID, 1, GL_FALSE, glm::value_ptr(View));
 		glUniformMatrix4fv(ProjectionID, 1, GL_FALSE, glm::value_ptr(Projection));
+
+		glUniformMatrix4fv(CamPosID, 1, GL_FALSE, glm::value_ptr(scene_camera->getPosition()));
 
 		glBindVertexArray(submesh->m_VAO);
 
