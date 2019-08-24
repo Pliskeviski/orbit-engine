@@ -48,4 +48,7 @@ namespace Orbit {
 	void Renderer::setActiveCamera(Camera* camera) {
 		Renderer::m_ActiveCamera = camera;
 	}
+	Renderer* Renderer::getRenderer() {
+		return Renderer::m_Renderer;
+	}
 }

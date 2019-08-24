@@ -15,6 +15,8 @@ namespace Orbit {
 	class ORBIT_API Texture : Component {
 	public:
 		Texture(std::string path);
+		TextureType getType();
+		uint32_t getId();
 		~Texture();
 	private:
 		uint32_t m_Id;

@@ -35,4 +35,7 @@ namespace Orbit {
 	void subMesh::Generate() {
 		Renderer::GenerateBuffers(this);
 	}
+	void subMesh::addTexture(Texture* texture) {
+		this->m_Textures.push_back(texture);
+	}
 }

@@ -27,6 +27,8 @@ namespace Orbit {
 
 		static Camera* getActiveCamera();
 		static void setActiveCamera(Camera* camera);
+		virtual uint32_t LoadTextureImage(std::string path) = 0;
+		static Renderer* getRenderer();
 	private:
 		static Renderer* m_Renderer;
 		static Camera* m_ActiveCamera;

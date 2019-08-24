@@ -46,7 +46,6 @@ namespace Orbit {
 			glm::vec3 pos;
 			fread(&pos, sizeof(glm::vec3), 1, file);
 			submesh->m_Transform = new Transform({ pos.x, pos.y, pos.z });
-			submesh->m_Transform->setScale(0.1f);
 
 			// Vertices
 			submesh->m_Vertices = new glm::vec3[info.x];

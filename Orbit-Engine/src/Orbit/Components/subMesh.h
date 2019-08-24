@@ -4,15 +4,18 @@
 
 //#include "Mesh.h"
 #include "Transform.h"
+#include "Texture.h"
 
 namespace Orbit {
-	class subMesh {
+	class ORBIT_API subMesh {
 	public:
 		subMesh(Transform* parent);
 		~subMesh();
 		
 		void Generate();
 		
+		void addTexture(Texture* texture);
+
 		bool m_Active;
 		
 		std::string m_Name;
@@ -36,5 +39,7 @@ namespace Orbit {
 
 		Transform* m_Parent;
 		Transform* m_Transform;
+
+		std::vector<Texture*> m_Textures;
 	};
 }

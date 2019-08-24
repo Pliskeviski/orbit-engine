@@ -21,6 +21,10 @@ namespace Orbit {
 		glViewport(0, 0, 1280, 768);
 
 		ORBIT_CORE_INFO("OpenGL {0} - {1} {2}", version, renderer, vendor);
+
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		glEnable(GL_DEPTH_TEST);
 	}
 
 	void glRenderer::Draw() {
@@ -37,8 +41,8 @@ namespace Orbit {
 		//// Add buffers 
 		submesh->m_VBOs.push_back(genVBO(submesh, submesh->m_VerticesCount * sizeof(glm::vec3), 3, &submesh->m_Vertices[0], GL_STATIC_DRAW));
 
-		//if (submesh->hasUVs)
-		////	s_mesh->VBOs.push_back(genVBO(s_mesh, s_mesh->vertSize * sizeof(glm::vec2), 2, &s_mesh->UVs[0], GL_STATIC_DRAW));
+		if (submesh->m_HasUVs)
+			submesh->m_VBOs.push_back(genVBO(submesh, submesh->m_VerticesCount* sizeof(glm::vec2), 2, &submesh->m_UVs[0], GL_STATIC_DRAW));
 
 		////if (s_mesh->hasNormals)
 		////	s_mesh->VBOs.push_back(genVBO(s_mesh, s_mesh->vertSize * sizeof(glm::vec3), 3, &s_mesh->Normals[0], GL_STATIC_DRAW));
@@ -60,15 +64,11 @@ namespace Orbit {
 		return 1;
 	}
 	int glRenderer::drawSubMesh(subMesh* submesh, Camera* scene_camera) {
-		//glBindVertexArray(submesh->m_VAO);
-		//for (unsigned int j = 0; j < submesh->m_VBOs.size(); j++) {
-		//	glEnableVertexAttribArray(j);
-		//}
-		//
-		//glDrawElements(GL_TRIANGLES, submesh->m_IndicesCount, GL_UNSIGNED_SHORT, (void*)submesh->m_Indices[0]);
-		//for (int j = 0; j < submesh->m_VBOs.size(); j++) {
-		//	glDisableVertexAttribArray(j);
-		//}
+
+		glBindVertexArray(submesh->m_VAO);
+		for (unsigned int j = 0; j < submesh->m_VBOs.size(); j++) {
+			glEnableVertexAttribArray(j);
+		}
 
 		GLuint ViewID       = glGetUniformLocation(this->m_Shader->getID(), "view");
 		GLuint ModelID      = glGetUniformLocation(this->m_Shader->getID(), "model");
@@ -79,11 +79,12 @@ namespace Orbit {
 
 		Math::vec3 s_Parent_Pos = submesh->m_Transform->getParent()->getPosition();
 		Math::vec3 s_Parent_Rot = submesh->m_Transform->getParent()->getRotation();
+		Math::vec3 s_Parent_Scl = submesh->m_Transform->getParent()->getScale();
 		Math::mat4 Model		= glm::translate(glm::mat4(1.f), submesh->m_Transform->getPosition()  + s_Parent_Pos);
 		Math::mat4 ModelRX		= glm::rotate	(glm::mat4(1.f), submesh->m_Transform->getRotationX() + s_Parent_Rot.x, glm::vec3(1.0f, .0f, .0f));
 		Math::mat4 ModelRY		= glm::rotate	(glm::mat4(1.f), submesh->m_Transform->getRotationY() + s_Parent_Rot.y, glm::vec3(.0f, 1.0f, .0f));
 		Math::mat4 ModelRZ		= glm::rotate	(glm::mat4(1.f), submesh->m_Transform->getRotationZ() + s_Parent_Rot.z, glm::vec3(.0f, .0f, 1.0f));
-		Math::mat4 ModelScale	= glm::scale	(glm::mat4(1.f), submesh->m_Transform->getScale()     * submesh->m_Transform->getScale()); // TODO
+		Math::mat4 ModelScale	= glm::scale	(glm::mat4(1.f), submesh->m_Transform->getScale()     / s_Parent_Scl); // TODO
 		Math::mat4 ModelRotation = ModelRX * ModelRY * ModelRZ;
 
 		Model *= ModelRotation * ModelScale;
@@ -93,11 +94,39 @@ namespace Orbit {
 		glUniformMatrix4fv(ProjectionID, 1, GL_FALSE, glm::value_ptr(Projection));
 
 		glBindVertexArray(submesh->m_VAO);
+
+
+		if (!submesh->m_Textures.empty()) {
+			for (unsigned int i = 0; i < submesh->m_Textures.size(); i++) {
+				glActiveTexture(GL_TEXTURE0 + i);
+				std::string name;
+				if (submesh->m_Textures[i]->getType() == TYPE_DIFFUSE)
+					name = "albedoMap";
+				if (submesh->m_Textures[i]->getType() == TYPE_NORMAL)
+					name = "normalMap";
+				if (submesh->m_Textures[i]->getType() == TYPE_METALLIC)
+					name = "metallicMap";
+				if (submesh->m_Textures[i]->getType() == TYPE_ROUGHNESS)
+					name = "roughnessMap";
+				if (submesh->m_Textures[i]->getType() == TYPE_AO)
+					name = "aoMap";
+
+				glUniform1i(glGetUniformLocation(this->m_Shader->getID(), name.c_str()), i);
+				glBindTexture(GL_TEXTURE_2D, submesh->m_Textures[i]->getId());
+			}
+		}
+
+
 		glDrawElements(GL_TRIANGLES, submesh->m_IndicesCount, GL_UNSIGNED_INT, 0);
+
+		for (int j = 0; j < submesh->m_VBOs.size(); j++) {
+			glDisableVertexAttribArray(j);
+		}
+		glBindTexture(GL_TEXTURE_2D, 0);
 
 		return 1;
 	}
-	uint32_t glRenderer::GLLoadImage(std::string path) {
+	uint32_t glRenderer::LoadTextureImage(std::string path) {
 		int width, height;
 		GLuint textureID;
 

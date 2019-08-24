@@ -14,7 +14,7 @@ namespace Orbit {
 		uint32_t CreateBuffer(subMesh* submesh);
 		int drawSubMesh(subMesh* submesh, Camera* scene_camera);
 		void Destroy() {}
-		static uint32_t GLLoadImage(std::string path);
+		uint32_t LoadTextureImage(std::string path) override;
 	private:
 		GLuint genVBO(subMesh* submesh, GLsizeiptr size, GLint dataSize, const void* data, GLenum usage);
 		Shader* m_Shader;
