@@ -14,3 +14,6 @@
 [submodule "Orbit-Engine/deps/MeshConverter"]
 	path = Orbit-Engine/deps/MeshConverter
 	url = https://github.com/Pliskeviski/MeshConverter
+[submodule "Orbit-Engine/deps/soil2"]
+	path = Orbit-Engine/deps/soil2
+	url = https://github.com/Pliskeviski/SOIL2

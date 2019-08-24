@@ -18,10 +18,10 @@ public:
 
 		Orbit::Mesh* mesh = new Orbit::Mesh(defaults::assets_dir + "Box_low.obt");
 		obj->addComponent(mesh);
-		obj->setPosition(10, 10, 10);
 
 		Orbit::Mesh* test = obj->getComponent<Orbit::Mesh>();
 		Orbit::Transform* test1 = obj->getComponent<Orbit::Transform>();
+		test1->setPositionX(4.f);
 
 		this->m_FirstMouse = true;
 	}
@@ -78,9 +78,9 @@ public:
 					cursorX = MousePos.x;
 					cursorY = MousePos.y;
 				}
+
 				double mouseX = cursorX - (screenWidth / 2);
 				double mouseY = (screenHeight / 2) - cursorY;
-
 
 				mouseX *= 0.05f;
 				mouseY *= 0.05f;
@@ -96,8 +96,8 @@ public:
 			this->m_FirstMouse = true;
 		}
 
-		ORBIT_CORE_WARN("Camera: x: {0} y: {1} z: {2}", this->m_MainCamera->getComponent<Orbit::Camera>()->getPosition().x, this->m_MainCamera->getComponent<Orbit::Camera>()->getPosition().y, this->m_MainCamera->getComponent<Orbit::Camera>()->getPosition().z);
-		ORBIT_CORE_WARN("Camera: Pitch {0}, Yaw {1}", this->m_MainCamera->getComponent<Orbit::Camera>()->getPitch(), this->m_MainCamera->getComponent<Orbit::Camera>()->getYaw());
+		//ORBIT_CORE_WARN("Camera: x: {0} y: {1} z: {2}", this->m_MainCamera->getComponent<Orbit::Camera>()->getPosition().x, this->m_MainCamera->getComponent<Orbit::Camera>()->getPosition().y, this->m_MainCamera->getComponent<Orbit::Camera>()->getPosition().z);
+		//ORBIT_CORE_WARN("Camera: Pitch {0}, Yaw {1}", this->m_MainCamera->getComponent<Orbit::Camera>()->getPitch(), this->m_MainCamera->getComponent<Orbit::Camera>()->getYaw());
 	}
 
 	~Sandbox() {}

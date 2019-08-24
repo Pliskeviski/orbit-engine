@@ -5,7 +5,7 @@
 
 class Component;
 namespace Orbit {
-	class Transform : public Component {
+	class ORBIT_API Transform : public Component {
 	public:
 		/*
 			@ new transform component

@@ -2,6 +2,7 @@
 #include "Camera.h"
 
 #include "Orbit/Renderer/Renderer.h"
+#include "Orbit/Application/Application.h"
 
 //#include "Orbit/Application/Application.h"
 #include "Orbit/Input/Input.h"
@@ -17,6 +18,8 @@ namespace Orbit {
 	Camera::Camera() : m_Yaw(YAW), m_Pitch(PITCH), m_Fov(FOV) { // todo have a principal camera and others
 		Transform* transform = new Transform();
 		m_Transform = transform;
+		this->m_Width = Application::getApplication()->getWindow()->getWidth();
+		this->m_Height = Application::getApplication()->getWindow()->getHeight();
 		Update();
 
 		Renderer::setActiveCamera(this);
@@ -24,6 +27,8 @@ namespace Orbit {
 	Camera::Camera(Math::vec3 pos) : m_Yaw(YAW), m_Pitch(PITCH), m_Fov(FOV) {
 		Transform* transform = new Transform(pos);
 		m_Transform = transform;
+		this->m_Width = Application::getApplication()->getWindow()->getWidth();
+		this->m_Height = Application::getApplication()->getWindow()->getHeight();
 		Update();
 
 		Renderer::setActiveCamera(this);
@@ -31,6 +36,8 @@ namespace Orbit {
 	Camera::Camera(Math::vec3 pos, float fov) : m_Yaw(YAW), m_Pitch(PITCH), m_Fov(FOV) {
 		Transform* transform = new Transform(pos);
 		m_Transform = transform;
+		this->m_Width = Application::getApplication()->getWindow()->getWidth();
+		this->m_Height = Application::getApplication()->getWindow()->getHeight();
 		Update();
 
 		Renderer::setActiveCamera(this);

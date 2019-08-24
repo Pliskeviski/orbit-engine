@@ -6,6 +6,8 @@
 
 #include "Orbit/Components/Camera.h"
 
+#include "SOIL2.h"
+
 namespace Orbit {
 	glRenderer::glRenderer() {
 		const GLubyte* vendor = glGetString(GL_VENDOR);
@@ -22,7 +24,7 @@ namespace Orbit {
 	}
 
 	void glRenderer::Draw() {
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClearColor(0.4f, 0.4f, 0.4f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		this->m_Shader->Use();
 	}
@@ -94,6 +96,34 @@ namespace Orbit {
 		glDrawElements(GL_TRIANGLES, submesh->m_IndicesCount, GL_UNSIGNED_INT, 0);
 
 		return 1;
+	}
+	uint32_t glRenderer::GLLoadImage(std::string path) {
+		int width, height;
+		GLuint textureID;
+
+		ORBIT_CORE_INFO("Loading texture: {0}.", path);
+
+		//glActiveTexture(GL_TEXTURE0);
+		glGenTextures(1, &textureID);
+		glBindTexture(GL_TEXTURE_2D, textureID);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+		unsigned char *image = SOIL_load_image(path.c_str(), &width, &height, 0, SOIL_LOAD_RGBA);
+		if (image == nullptr) {
+			std::cout << "Failed to load texture" << std::endl;
+		}
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+		SOIL_free_image_data(image);
+
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		return textureID;
 	}
 	GLuint glRenderer::genVBO(subMesh* submesh, GLsizeiptr size, GLint dataSize, const void* data, GLenum usage) {
 		glBindVertexArray(submesh->m_VAO);

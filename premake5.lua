@@ -17,12 +17,14 @@ IncludeDir["Glad"] = "Orbit-Engine/deps/Glad/include"
 IncludeDir["ImGui"] = "Orbit-Engine/deps/imgui"
 IncludeDir["glm"] = "Orbit-Engine/deps/glm"
 IncludeDir["Converter"] = "Orbit-Engine/deps/meshconverter"
+IncludeDir["SOIL2"] = "Orbit-Engine/deps/soil2/incs"
 
 
 include "Orbit-Engine/deps/GLFW"
 include "Orbit-Engine/deps/Glad"
 include "Orbit-Engine/deps/imgui"
 include "Orbit-Engine/deps/meshconverter"
+include "Orbit-Engine/deps/soil2"
 
 project "Orbit-Engine"
 	location "Orbit-Engine"
@@ -53,6 +55,7 @@ project "Orbit-Engine"
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.Converter}",
+		"%{IncludeDir.SOIL2}",
 	}
 
 	links 
@@ -62,12 +65,15 @@ project "Orbit-Engine"
 		"ImGui",
 		"Converter",
 		"opengl32.lib",
+		"SOIL2",
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
 		systemversion "latest"
-
+		staticruntime "On"
+		buildoptions "/MT"
+		
 		defines
 		{
 			"OBT_PLATFORM_WINDOWS",
@@ -81,7 +87,7 @@ project "Orbit-Engine"
 		{
 			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
 		}
-
+		
 	filter "configurations:Debug"
 		defines "OBT_DEBUG"
 		runtime "Debug"
@@ -96,6 +102,7 @@ project "Orbit-Engine"
 		defines "OBT_DIST"
 		runtime "Release"
 		optimize "On"
+        
 
 project "Sandbox"
 	location "Sandbox"
@@ -127,6 +134,8 @@ project "Sandbox"
 	filter "system:windows"
 		cppdialect "C++17"
 		systemversion "latest"
+		staticruntime "On"
+		buildoptions "/MT"
 
 		defines
 		{
@@ -147,3 +156,4 @@ project "Sandbox"
 		defines "OBT_DIST"
 		runtime "Release"
 		optimize "On"
+		
