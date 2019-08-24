@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 
+#include "Orbit/TimeStep.h"
 #include "Component.h"
 #include "Transform.h"
 #include "subMesh.h"
@@ -18,6 +19,7 @@ namespace Orbit {
 		
 		// @ Componet's override
 		void setParent(Component* parent) override;
+		void OnUpdate(Orbit::Timestep ts) override;
 	private:
 		std::vector<subMesh*> m_subMesh;
 		Transform* m_Transform;

@@ -32,6 +32,7 @@ namespace Orbit {
 		bool m_Running;
 		LayerStack m_LayerStack;
 		static Application* m_Application;
+		float m_LastFrameTime = 0.0f;
 	};
 
 	Application* CreateApplication();

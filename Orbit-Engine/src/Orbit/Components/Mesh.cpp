@@ -36,4 +36,7 @@ namespace Orbit {
 	void Mesh::setParent(Component* parent) {
 		this->m_Transform->setParent(parent);
 	}
+	void Mesh::OnUpdate(Orbit::Timestep ts) {
+		this->Draw();
+	}
 }

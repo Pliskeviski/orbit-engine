@@ -14,7 +14,7 @@ public:
 		this->m_MainCamera = new Orbit::Object("Camera");
 		this->m_MainCamera->addComponent(new Orbit::Camera(Orbit::Math::vec3(0.f, 0.f, -1.0f)));
 
-		this->obj = new Orbit::Object("Test Object");
+		this->obj = new Orbit::Object("Object");
 
 		Orbit::Mesh* mesh = new Orbit::Mesh(defaults::assets_dir + "Biplano\\biplane_complete.obt");
 		obj->addComponent(mesh);
@@ -30,14 +30,18 @@ public:
 		test1->setPositionX(1.f);
 		test1->setScale(10.f);
 
+		obj->setUpdateFn([](float ms, Orbit::Object* m_this) {
+			Orbit::Transform* transform = m_this->getComponent<Orbit::Transform>();
+			transform->setPositionX(transform->getPositionX() + (-1 * ms));
+			//ORBIT_CORE_INFO("HWLOOOOASD {0}", ms);
+		});
+
 		this->m_FirstMouse = true;
 	}
 
 	Orbit::Math::vec2 lastMousePos;
 
 	void Update() {
-		this->obj->getComponent<Orbit::Mesh>()->Draw();
-
 		if (Orbit::Input::isMouseButtonDown(1)) {
 
 			// Camera scripting || Temp

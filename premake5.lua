@@ -41,6 +41,7 @@ project "Orbit-Engine"
 	files
 	{
 		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.hpp",
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/deps/glm/glm/**.hpp",
 		"%{prj.name}/deps/glm/glm/**.inl",

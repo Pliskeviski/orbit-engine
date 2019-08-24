@@ -6,7 +6,7 @@ class TestLayer : public Orbit::Layer {
 public:
 	TestLayer() : Layer("Test Layer") {};
 
-	void OnUpdate() override {
+	void OnUpdate(Orbit::Timestep ts) override {
 		//ORBIT_INFO("TestLayer->Update");
 	}
 

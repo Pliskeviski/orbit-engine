@@ -2,8 +2,9 @@
 
 #include "Orbit/Application/Application.h"
 #include "Orbit/Events/EventDispatcher.h"
-
+#include "Orbit/TimeStep.h"
 #include "Orbit/Input/Input.h"
+#include <glfw/glfw3.h>
 
 namespace Orbit {
 #define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
@@ -29,8 +30,12 @@ namespace Orbit {
 		while (this->m_Running) {
 			Renderer::Update();
 
+			float time = (float)glfwGetTime();
+			Timestep timestep = time - this->m_LastFrameTime;
+			this->m_LastFrameTime = time;
+
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(timestep);
 
 
 			this->Update();
