@@ -16,12 +16,19 @@ public:
 
 		this->obj = new Orbit::Object("Test Object");
 
-		Orbit::Mesh* mesh = new Orbit::Mesh(defaults::assets_dir + "Box_low.obt");
+		Orbit::Mesh* mesh = new Orbit::Mesh(defaults::assets_dir + "Biplano\\biplane_complete.obt");
 		obj->addComponent(mesh);
+
+		mesh->getSubMeshes()[0]->addTexture(new Orbit::Texture(defaults::assets_dir + "Biplano\\prop_biplane_last.jpg"));
+		mesh->getSubMeshes()[1]->addTexture(new Orbit::Texture(defaults::assets_dir + "Biplano\\biplano_last.jpg"));
+		mesh->getSubMeshes()[2]->addTexture(new Orbit::Texture(defaults::assets_dir + "Biplano\\wheels_biplane_last.jpg"));
+		mesh->getSubMeshes()[3]->addTexture(new Orbit::Texture(defaults::assets_dir + "Biplano\\flaps_biplane_last.jpg"));
+		mesh->getSubMeshes()[4]->addTexture(new Orbit::Texture(defaults::assets_dir + "Biplano\\prop_biplane_last.jpg"));
 
 		Orbit::Mesh* test = obj->getComponent<Orbit::Mesh>();
 		Orbit::Transform* test1 = obj->getComponent<Orbit::Transform>();
-		test1->setPositionX(4.f);
+		test1->setPositionX(1.f);
+		test1->setScale(10.f);
 
 		this->m_FirstMouse = true;
 	}
